@@ -1,0 +1,20 @@
+<section class="user-section">
+    @if (isLoggedIn) {
+        <p>Bienvenido, {{username}} </p>
+        <img class="user-photo" src="https://github.com/cpo0003.png" alt="photo">
+        <p>¿Cuál es tu trabajo soñado?</p>
+        <app-games class="games-component" (addFavoriteEvent)="getFavGame($event)" username="{{username}}"></app-games>
+        @defer{
+            @if (favGame != '') {
+                <p>Tu trabajo soñado es: {{favGame}}</p>
+            }
+            <button class="view-cv-btn" routerLink="/curriculum">Ver tu currículum</button>
+        }
+       
+    }
+    @else {
+        <p class="login-msg">Inicia sesión</p>
+        <button class="login-btn" (click)="isLoggedIn = true">Login</button>
+    }
+</section>
+<router-outlet></router-outlet>
